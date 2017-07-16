@@ -1,25 +1,25 @@
 local function show_bot_settings(msg)
-   local text = '*》Self Bot Settings :《*\n'
+   local text = '*⚙️ Settings :⚙️*\n'
 
    local hash = 'autoleave'
     if not redis:get(hash) then
-        autoleave = '[Enable]'
+        autoleave = '[🔒]'
     else
-        autoleave = '[Disable]'
+        autoleave = '[🔓]'
     end
 
    local hash = 'anti-flood'
     if not redis:get(hash) then
-        antiflood = '[Enable]'
+        antiflood = '[🔒]'
     else
-        antiflood = '[Disable]'
+        antiflood = '[🔓]'
     end
 
    local hash = 'markread'
     if redis:get(hash) == "on" then
-        markread = '[Yes]'
+        markread = '[🔒]'
     else
-        markread = '[No]'
+        markread = '[🔓]'
     end
 
    local hash = 'flood_max'
@@ -37,15 +37,15 @@ local function show_bot_settings(msg)
     end
     local hash = 'mute_gp:'..msg.to.id
     if redis:get(hash) then
-        muteall = '[Enable]'
+        muteall = '[🔒]'
     else
-        muteall = '[Disable]'
+        muteall = '[🔓]'
     end
 if msg.to.type == 'channel' then
-    text = text..'_》Auto Leave :_ *'..autoleave..'*\n_》Mute All :_ *'..muteall..'*\n_》Messages Read :_ *'..markread..'*\n_》Pv Max Flood :_ *['..MSG_NUM_MAX..']*\n_》Pv Flood Time Check :_ *['..TIME_CHECK..']*\n_》Pv Flood Protection :_ *'..antiflood..'*\n*》*@BeyondTeam*《*'
+    text = text..'_🔱Auto Leave :_ *'..autoleave..'*\n_🔱Mute All :_ *'..muteall..'*\n_🔱Messages Read :_ *'..markread..'*\n_🔱Pv Max Flood :_ *['..MSG_NUM_MAX..']*\n🔱_Pv Flood Time Check :_ *['..TIME_CHECK..']*\n_🔱Pv Flood Protection :_ *'..antiflood..'*'
 return text
 elseif msg.to.type == 'pv' or msg.to.type == 'chat' then
-    text = text..'_》Auto Leave :_ *'..autoleave..'*\n_》Messages Read :_ *'..markread..'*\n_》Pv Max Flood :_ *['..MSG_NUM_MAX..']*\n_》Pv Flood Time Check :_ *['..TIME_CHECK..']*\n_》Pv Flood Protection :_ *'..antiflood..'*\n*》*@BeyondTeam*《*'
+    text = text..'_🔱Auto Leave :_ *'..autoleave..'*\n_🔱Messages Read :_ *'..markread..'*\n_🔱Pv Max Flood :_ *['..MSG_NUM_MAX..']*\n_🔱Pv Flood Time Check :_ *['..TIME_CHECK..']*\n_🔱Pv Flood Protection :_ *'..antiflood..'*'
 return text
    end
 end
@@ -384,15 +384,15 @@ return {
 		"/channel enable: enable current channel",
 		"/channel disable: disable current channel" },
 	patterns = {
-     "^[!/#](antiflood) (.*)$",
-     "^[!/#](pvfloodtime) (%d+)$",
-     "^[!/#](pvsetflood) (%d+)$",
-		"^[!/#](autoleave) (.*)$",
-		"^[!/#](edit) (.*)$",
-		"^[!/#](settings)$",
-		"^[!/#](help)$",
-		"^[!/][Ss]elf (on)",
-		"^[!/][Ss]elf (off)" }, 
+     "^(antiflood) (.*)$",
+     "^(pvfloodtime) (%d+)$",
+     "^(pvsetflood) (%d+)$",
+		"^(autoleave) (.*)$",
+		"^(edit) (.*)$",
+		"^(تنظیمات)$",
+		"^(help)$",
+		"^[Ss]elf (on)",
+		"^[Ss]elf (off)" }, 
 	run = run,
 	pre_process = pre_process
 }
